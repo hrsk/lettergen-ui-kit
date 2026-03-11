@@ -1,7 +1,7 @@
-export { Button } from "./button";
-export { Header } from "./header";
-export { Input } from "./input";
-export { Separator } from "./separator";
-export { Textarea } from "./textarea";
-export { Card, CardFooter, CardContent } from "./card";
-export { Scroll } from "./scroll";
+export * from "./button";
+export * from "./header";
+export * from "./input";
+export * from "./separator";
+export * from "./textarea";
+export * from "./card";
+export * from "./scroll";

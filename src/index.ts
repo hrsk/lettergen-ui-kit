@@ -1,5 +1,5 @@
 import "./styles/index.scss";
 
-export * from "./components/index";
+export * from "./components";
 
 export { clsx } from "clsx";
