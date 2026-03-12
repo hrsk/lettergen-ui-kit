@@ -1,0 +1,10 @@
+export { default as Check } from "./Check";
+export { default as Copy } from "./Copy";
+export { default as Ellipse } from "./Ellipse";
+export { default as Home } from "./Home";
+export { default as Loading } from "./Loading";
+export { default as Logomark } from "./Logomark";
+export { default as Logotype } from "./Logotype";
+export { default as Plus } from "./Plus";
+export { default as Repeat } from "./Repeat";
+export { default as Trash } from "./Trash";
