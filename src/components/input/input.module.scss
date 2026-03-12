@@ -1,8 +1,10 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.fullWidthContainer {
   width: 100%;
-  gap: 6px;
 }
 
 .label {
@@ -10,10 +12,10 @@
   font-weight: 500;
   line-height: 143%;
   color: var(--gray-900);
+  margin-bottom: 6px;
 }
 
 .input {
-  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
@@ -28,6 +30,10 @@
   border-radius: 6px;
   background-color: var(--light-100);
   outline: none;
+
+  &.fullWidth {
+    width: 100%;
+  }
 
   @media screen and (width <=510px) {
     &::placeholder {
