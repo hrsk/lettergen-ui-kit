@@ -2,23 +2,3 @@
 @use "./typography";
 @use "./colors";
 @use "./fonts";
-@use "./overlayscrollbarsTheme";
-
-[data-overlayscrollbars-field] {
-  appearance: none;
-  display: block;
-  border: none;
-  padding: 0;
-  margin: 0;
-  min-width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  field-sizing: content;
-}
-
-[data-overlayscrollbars-viewport] > [data-overlayscrollbars-field] {
-  position: absolute;
-  padding: 12px 14px;
-  top: 0;
-  left: 0;
-}

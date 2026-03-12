@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Textarea } from "./textarea";
+import { useState } from "react";
 
 type Story = StoryObj<typeof Textarea>;
 type MetaType = Meta<typeof Textarea>;
@@ -10,8 +11,43 @@ const meta: MetaType = {
   tags: ["autodocs"],
 
   args: {
-    placeholder: "Placeholder...",
-    label: "Label",
+    disabled: false,
+    showCounter: false,
+    fullWidth: false,
+    label: "",
+    placeholder: "",
+    error: "",
+    maxLength: undefined,
+  },
+  argTypes: {
+    label: {
+      control: "text",
+      description: "Label text displayed above the textarea",
+    },
+    placeholder: {
+      control: "text",
+      description: "Placeholder text shown when textarea is empty",
+    },
+    error: {
+      control: "text",
+      description: "Error state - shows red border and red counter when truthy",
+    },
+    maxLength: {
+      control: "number",
+      description: "Maximum character limit",
+    },
+    showCounter: {
+      control: "boolean",
+      description: "Shows character count when maxLength is set",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Disables the textarea",
+    },
+    fullWidth: {
+      control: "boolean",
+      description: "Makes textarea take full width of container",
+    },
   },
 };
 
@@ -23,50 +59,50 @@ export const Default: Story = {
   },
 };
 
-export const WithScroll: Story = {
+export const WithLabel: Story = {
   args: {
-    value: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Eaque error autem expedita non commodi aspernatur numquam doloribus
-    consequuntur enim, nemo quod repellat ea eveniet quas alias vitae
-    quaerat ex itaque quibusdam! Reiciendis maiores ut rem
-    nesciunt minus reprehenderit odit asperiores consequatur quo,
-    adipisci fuga a cupiditate ab corrupti excepturi consectetur voluptates?
-    Quae quisquam sequi dolore ratione sint modi corporis officia reprehenderit
-    doloremque repellat, ipsum voluptates earum vitae corrupti quia amet quos
-    provident consequatur harum facilis blanditiis nisi. Minima nesciunt impedit
-    molestias debitis voluptate quasi a pariatur nisi, odio, sunt dolore nam
-    blanditiis exercitationem officia, nemo sapiente doloribus obcaecati tenetur eos!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque error
-    autem expedita non commodi aspernatur numquam doloribus consequuntur enim,
-    nemo quod repellat ea eveniet quas alias vitae quaerat ex itaque quibusdam!
-    Reiciendis maiores ut rem nesciunt minus reprehenderit odit asperiores consequatur quo,
-    adipisci fuga a cupiditate ab corrupti excepturi consectetur voluptates? Quae quisquam
-    sequi dolore ratione sint modi corporis officia reprehenderit doloremque repellat,
-    ipsum voluptates earum vitae corrupti quia amet quos provident consequatur harum
-    facilis blanditiis nisi. Minima nesciunt impedit molestias debitis voluptate quasi
-    a pariatur nisi, odio, sunt dolore nam blanditiis exercitationem officia, nemo
-    sapiente doloribus obcaecati tenetur eos!`,
+    label: "Description",
+    placeholder: "Enter description...",
+  },
+};
+
+const WithCounterComponent = () => {
+  const [value, setValue] = useState("");
+
+  return (
+    <Textarea
+      label='Comment'
+      placeholder='Write your comment...'
+      value={value}
+      onChange={(event) => {
+        return setValue(event.target.value);
+      }}
+      maxLength={100}
+      showCounter
+    />
+  );
+};
+
+export const WithCounter: Story = {
+  render: () => {
+    return <WithCounterComponent />;
   },
 };
 
 export const WithError: Story = {
-  render: () => {
-    return (
-      <Textarea
-        isError={true}
-        label='Label'
-      >
-        <span style={{ textAlign: "center", color: "var(--warning-300)" }}>
-          {1299}/{1200}
-        </span>
-      </Textarea>
-    );
+  args: {
+    label: "Label",
+    placeholder: "Tell us about yourself...",
+    error: "error",
+    value: "",
   },
 };
 
 export const Disabled: Story = {
   args: {
+    label: "Disabled",
+    placeholder: "Cannot edit this",
     disabled: true,
-    placeholder: "Placeholder...",
+    value: "This textarea is disabled",
   },
 };
